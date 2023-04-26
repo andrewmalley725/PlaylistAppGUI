@@ -1,27 +1,55 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 export default function HomePage()
 {
-function logout() {
-    localStorage.clear();
-    window.location.reload();
-}
+    const uid = localStorage.getItem('userId');
+    const url = 'https://localhost:5001/api/Playlist';
+    const [data, setData] = useState([]);
 
+    useEffect(() => {
+        axios.get(`${url}?userid=${uid}`).then(res => {
+            setData(res.data.songs)
+        })
+    }, [uid]);
+
+    console.log(data)
+   
     return(
-        <div>
-            {
-                localStorage.getItem('userId') ? 
+        <div class="container">
+            {uid ? 
+                data ? 
                 <div>
-                    <h1>Welcome {localStorage.getItem('username')}!</h1>
-                    <button type="button" className="btn btn-primary" onClick={logout}>Logout</button>
+                    <h1 class="mt-3">Welcome {localStorage.getItem('username')}!</h1>
+                    <h3>{localStorage.getItem('username')}'s playlist</h3>
+                    <table class="table mt-3">
+                    <thead>
+                        <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Artist</th>
+                        <th scope="col">Album</th>
+                        <th scope="col">Genre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data.map(song => (
+                        <tr key={song.id}>
+                            <td>{song.title}</td>
+                            <td>{song.artist}</td>
+                            <td>{song.album}</td>
+                            <td>{song.genre}</td>
+                        </tr>
+                        ))}
+                    </tbody>
+                    </table>
                 </div>
-                
-                : 
+                : <div class="mt-3"></div>
+            : 
                 <div>
-                    <h1>Generic HomePage</h1>
-                    <a href="/login" className="btn btn-primary">Login</a>
+                <h1 class="mt-3">Login or create an account to make a playlist!</h1>
                 </div>
             }
         </div>
+
     )
 }

@@ -1,5 +1,8 @@
 import Login from "./components/login";
 import HomePage from "./components/homePage";
+import NavBar from "./components/navbar";
+import DisplaySongs from "./components/songs";
+import SignUp from "./components/signup";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -13,12 +16,25 @@ const router = createBrowserRouter([
   {
       path: "/login",
       element: <Login/>,
-  }
+  },
+  {
+    path: "/songs",
+    element: <DisplaySongs/>,
+  },
+  {
+    path: "/signup",
+    element: <SignUp/>,
+  },
+  
 ]);
 
 function App() {
   return (
-    <RouterProvider router={router} />
+    <div>
+      <NavBar/>
+      <RouterProvider router={router} />
+    </div>
+    
   );
 }
 
