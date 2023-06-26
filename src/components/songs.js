@@ -16,7 +16,7 @@ export default function DisplaySongs(){
     {
         const uid = parseInt(localStorage.getItem('userId'));
         axios.post(`${url}/Playlist?userid=${uid}&songId=${id}`).then(res => {
-            console.log(res);
+            alert("Song added!");
         });
     }
 

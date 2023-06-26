@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
@@ -12,6 +13,14 @@ export default function HomePage()
             setData(res.data.songs)
         })
     }, [uid]);
+
+    function remove(id)
+    {
+        const uid = parseInt(localStorage.getItem('userId'));
+        axios.delete(`${url}/${uid}/${id}`).then(res => {
+            window.location.reload();
+        });
+    }
 
     console.log(data)
    
@@ -38,6 +47,9 @@ export default function HomePage()
                             <td>{song.artist}</td>
                             <td>{song.album}</td>
                             <td>{song.genre}</td>
+                            <td>
+                                <a href="#" onClick={() => remove(song.songId)}>Delete</a>
+                            </td>
                         </tr>
                         ))}
                     </tbody>
