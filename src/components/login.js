@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import axios from 'axios';
 
 export default function Login() {
-    const apiURL = 'https://localhost:5001/api/Authenticate';
+    const apiURL = 'https://localhost:7152/api/Authenticate';
     const [msg, setMsg] = useState("");
     const userName = useRef("");
     const passWord = useRef("");

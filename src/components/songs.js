@@ -3,7 +3,7 @@ import {React, useEffect, useState, useRef} from "react";
 import axios from 'axios';
 
 export default function DisplaySongs(){
-    const url = 'https://localhost:5001/api';
+    const url = 'https://localhost:7152/api';
     const [data, setData] = useState([]);
     const [page, setPage] = useState(1);
     const totalPages = useRef(0);

@@ -2,7 +2,7 @@ import {React,useRef,useState} from "react";
 import axios from 'axios';
 
 export default function SignUp(){
-    const url = 'https://localhost:5001/api/Users';
+    const url = 'https://localhost:7152/api/Users';
     const firstname = useRef("");
     const lastname = useRef("");
     const username = useRef("");

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 export default function HomePage()
 {
     const uid = localStorage.getItem('userId');
-    const url = 'https://localhost:5001/api/Playlist';
+    const url = 'https://localhost:7152/api/Playlist';
     const [data, setData] = useState([]);
 
     useEffect(() => {
